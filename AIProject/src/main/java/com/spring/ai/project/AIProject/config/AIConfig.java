@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class AIConfig {
 
     //both beans are of same type, so we will name beans
-//    and we can directly autowire any model chat client - and use Qualifier when using
+    //we can directly autowire any model chat client - and use Qualifier when using
 
     @Bean(name = "ollamaChatClient")
     public ChatClient ollamaChatModel(OllamaChatModel chatModel){
