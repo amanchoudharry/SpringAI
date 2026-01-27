@@ -1,5 +1,6 @@
-package com.spring.ai.project.AIProject.config;
+package com.spring.ai.project.AIProject.Config;
 
+import com.spring.ai.project.AIProject.Advisor.TokenCount;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SafeGuardAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
@@ -20,14 +21,14 @@ public class AIConfig {
     public ChatClient ollamaChatModel(OllamaChatModel chatModel){
 
         return ChatClient.builder(chatModel)
-                .defaultAdvisors(new SimpleLoggerAdvisor() , new SafeGuardAdvisor(List.of("games","girls","love","source code","gambling")))
+                .defaultAdvisors(new TokenCount(), new SafeGuardAdvisor(List.of("games","girls","love","source code","gambling")))
                 .build();
     }
 
     @Bean(name = "googleGenAiChatClient")
     public ChatClient googleGenAiChatModel(GoogleGenAiChatModel chatModel){
         return ChatClient.builder(chatModel)
-                .defaultAdvisors(new SimpleLoggerAdvisor(), new SafeGuardAdvisor(List.of("games","girls","love","source code","gambling")))
+                .defaultAdvisors(new TokenCount(), new SafeGuardAdvisor(List.of("games","girls","love","source code","gambling")))
                 .build();
     }
 }

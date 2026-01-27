@@ -24,10 +24,9 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public String chat(String query){
         Prompt prompt1 = new Prompt(query, OllamaChatOptions.builder()
-                .temperature(0.3)
                 .build());
 
-        return ollamaChatClient
+        return googleGenAiChatClient
                 .prompt(prompt1)
                 .call()
                 .content();
@@ -50,7 +49,7 @@ public class ChatServiceImpl implements ChatService {
         Prompt prompt = new Prompt(renderMsg);
 
         //passing prompt we made to Gemini (here) ChatClient
-        var response = googleGenAiChatClient
+        var response = ollamaChatClient
                 .prompt(prompt)
                 .call()
                 .content();
